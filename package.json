@@ -4,7 +4,7 @@
   "description": "Twilio Chat JS SDK Demo",
   "private": "true",
   "scripts": {
-    "start": "node server.js"
+    "start": "webpack-dev-server --open & node server.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "css-loader": "^4.3.0",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
