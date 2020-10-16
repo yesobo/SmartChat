@@ -1,8 +1,10 @@
 #channel-messages {
     background: url("https://i.ibb.co/3s1f9Jq/default-wallpaper.png") repeat;
+    font-family: "Roboto", sans-serif;
     height: calc(100% - 70px);
     margin-bottom: 70px;
     overflow-y: auto;
+    padding: 0 16px 0px 16px;
     position: relative;
     width: 100%;
   }
