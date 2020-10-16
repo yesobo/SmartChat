@@ -1,13 +1,17 @@
+require("./channel-messages.css");
+
 var $ = require("jquery");
 
 var Message = require("./message.js");
+
+var GlobalState = require("./state.js");
 
 function getChannelMessages() {
   return $("#channel-messages");
 }
 
-function getChannelMessagesUl() {
-  return $("#channel-messages ul");
+function getChannelMessagesList() {
+  return $("#channel-messages");
 }
 
 let State = {
@@ -20,7 +24,7 @@ function initialize(parentState) {
     var $messages = getChannelMessages();
 
     if (
-      getChannelMessagesUl().height() - 50 <
+      getChannelMessagesList().height() - 50 <
       $messages.scrollTop() + $messages.height()
     ) {
       parentState.activeChannel.getMessages(1).then((messages) => {
@@ -52,18 +56,17 @@ function initialize(parentState) {
 
 function addMessage(message) {
   var $messages = getChannelMessages();
-  var initHeight = getChannelMessagesUl().height();
-  var $el = $("<li/>").attr("data-index", message.index);
-  Message.createMessage(message, $el);
+  var initHeight = getChannelMessagesList().height();
+  var $el = Message.createMessage(message, GlobalState.identity);
 
-  getChannelMessagesUl().append($el);
+  getChannelMessagesList().append($el);
 
   if (initHeight - 50 < $messages.scrollTop() + $messages.height()) {
-    $messages.scrollTop(getChannelMessagesUl().height());
+    $messages.scrollTop(getChannelMessagesList().height());
   }
 
   if (
-    getChannelMessagesUl().height() <= $messages.height() &&
+    getChannelMessagesList().height() <= $messages.height() &&
     message.index > message.channel.lastConsumedMessageIndex
   ) {
     message.channel.updateLastConsumedMessageIndex(message.index);
@@ -76,7 +79,7 @@ function scrollToLastRead(page, channel) {
     : 0;
   var lastIndex = channel.lastConsumedMessageIndex;
   if (lastIndex && lastIndex !== newestMessageIndex) {
-    var $li = $("li[data-index=" + lastIndex + "]");
+    var $li = $(".message[data-index=" + lastIndex + "]");
     var top = $li.position() && $li.position().top;
     $li.addClass("last-read");
     getChannelMessages().scrollTop(top + getChannelMessages().scrollTop());
@@ -86,22 +89,22 @@ function scrollToLastRead(page, channel) {
 
 function loadPreviousMessages(channelMsgsObject) {
   channelMsgsObject.addClass("loader");
-  var initialHeight = $("ul", channelMsgsObject).height();
+  var initialHeight = $(channelMsgsObject).height();
   State.activeChannelPage.prevPage().then((page) => {
     page.items.reverse().forEach(prependMessage);
     State.activeChannelPage = page;
-    var difference = $("ul", channelMsgsObject).height() - initialHeight;
+    var difference = $(channelMsgsObject).height() - initialHeight;
     channelMsgsObject.scrollTop(difference);
     channelMsgsObject.removeClass("loader");
   });
 }
 
 function removeMessage(message) {
-  $("#channel-messages li[data-index=" + message.index + "]").remove();
+  $("#channel-messages .message[data-index=" + message.index + "]").remove();
 }
 
 function updateLastRead() {
-  $("#channel-messages li.last-read").removeClass("last-read");
+  $("#channel-messages .message.last-read").removeClass("last-read");
 }
 
 function addTwilioChannelPageMsgs(page) {
@@ -111,9 +114,8 @@ function addTwilioChannelPageMsgs(page) {
 module.exports = {
   addMessage,
   getChannelMessages,
-  getChannelMessagesUl,
+  getChannelMessagesList,
   initialize,
-  loadPreviousMessages,
   removeMessage,
   addTwilioChannelPageMsgs,
   scrollToLastRead,

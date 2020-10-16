@@ -26,17 +26,7 @@ $(document).ready(function () {
 
     initializeChannelsComponent(client);
 
-    $("#join-channel").on("click", function () {
-      State.activeChannel
-        .join()
-        .then((channel) => {
-          return TwilioChannelUtils.setActiveChannel(channel, State, client);
-        })
-        .then(({ channel, page }) => {
-          State.activeChannel = channel;
-          State.activeChannelPage = page;
-        });
-    });
+    initializeJoinChannelBtn();
   });
 
   ChannelMsgsSend.initialize(State);
@@ -52,6 +42,20 @@ $(document).ready(function () {
 
   Members.initialize(State);
 });
+
+function initializeJoinChannelBtn() {
+  $("#join-channel").on("click", function () {
+    State.activeChannel
+      .join()
+      .then((channel) => {
+        return TwilioChannelUtils.setActiveChannel(channel, State, client);
+      })
+      .then(({ channel, page }) => {
+        State.activeChannel = channel;
+        State.activeChannelPage = page;
+      });
+  });
+}
 
 function initializeChannelsComponent(client) {
   Channels.initialize(client);
@@ -143,7 +147,7 @@ function leaveChannel(channel) {
 }
 
 function updateMessages() {
-  ChannelMsgs.getChannelMessagesUl().empty();
+  ChannelMsgs.getChannelMessagesList().empty();
   State.activeChannel.getMessages(30).then(function (page) {
     page.items.forEach(ChannelMsgs.addMessage);
   });
@@ -159,7 +163,7 @@ function prependMessage(message) {
   var $messages = ChannelMsgs.getChannelMessages();
   var $el = $("<li/>").attr("data-index", message.index);
   Message.createMessage(message, $el);
-  ChannelMsgs.getChannelMessagesUl().prepend($el);
+  ChannelMsgs.getChannelMessagesList().prepend($el);
 }
 
 function updateChannels(page) {
@@ -243,7 +247,7 @@ function setActiveChannel(channel, State, client) {
 
   State.activeChannel = channel;
 
-  ChannelMsgs.getChannelMessagesUl().empty();
+  ChannelMsgs.getChannelMessagesList().empty();
   Members.emptyMembers();
   $("#no-channel").hide();
 
@@ -277,7 +281,7 @@ function setActiveChannel(channel, State, client) {
         var newestMessageIndex = ChannelMsgs.scrollToLastRead(page, channel);
 
         if (
-          ChannelMsgs.getChannelMessagesUl().height() <=
+          ChannelMsgs.getChannelMessagesList().height() <=
           ChannelMsgs.getChannelMessages().height()
         ) {
           channel
@@ -318,7 +322,7 @@ function updateSendMenssageComponentClickHandler(channel) {
     channel.sendMessage(body).then(function () {
       ChannelMsgsSend.getMessageBodyInput().val("").focus();
       ChannelMsgs.getChannelMessages().scrollTop(
-        ChannelMsgs.getChannelMessagesUl().height()
+        ChannelMsgs.getChannelMessagesList().height()
       );
       ChannelMsgs.updateLastRead();
     });

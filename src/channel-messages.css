@@ -1,0 +1,105 @@
+#channel-messages {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 70px);
+    margin-bottom: 70px;
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+  }
+  
+  #channel-messages p.members-read {
+    position: absolute;
+    bottom: 2px;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  #channel-messages p.members-read img {
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+    border: solid 1px #333;
+    float: right;
+    margin-left: 4px;
+  }
+  
+  #channel-messages p.last-read {
+    position: absolute;
+    bottom: 2px;
+    right: 10px;
+    margin: 0;
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    display: none;
+  }
+  
+  #channel-messages .message.last-read {
+    border-bottom: 1px solid red;
+  }
+  
+  #channel-messages .message.last-read p.last-read {
+    display: block;
+  }
+  
+  #channel-messages .message > div {
+    display: none;
+  }
+  
+  #channel-messages .message:hover > div {
+    display: block;
+  }
+  
+  #channel-messages .message.editing:hover > div {
+    display: none;
+  }
+  
+  #channel-messages .message:hover {
+    background: #EBEBF0;
+  }
+  
+  #channel-messages p.author {
+    display: inline-block;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    width: calc(100% - 90px);
+  }
+  
+  #channel-messages .timestamp {
+    font-style: italic;
+    color: #333;
+    margin-left: 4px;
+  }
+  
+  #channel-messages p.body {
+    margin: 0 0 0 35px;
+    padding: 0;
+    width: calc(100% - 90px);
+  }
+  
+  #channel-messages textarea.edit-body {
+    width: calc(100% - 90px);
+    margin: 5px 0 0 35px;
+    padding: 0;
+    display: none;
+  }
+  
+  #channel-messages button {
+    display: none;
+    margin: 0 5px;
+  }
+  
+  #channel-messages span.edited {
+    font-style: italic;
+    color: #444;
+    margin-left: 8px;
+  }
+  
+  #channel-messages div {
+    float: right;
+  }
+  

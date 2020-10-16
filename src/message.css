@@ -1,0 +1,32 @@
+#channel-messages .message {
+    color: #000;
+    clear: both;
+    line-height: 18px;
+    font-size: 15px;
+    padding: 8px;
+    position: relative;
+    margin: 8px 0;  
+    max-width: 85%;
+    word-wrap: break-word;
+    /* z-index: -1; */
+  }
+
+  #channel-messages .message.received {
+    background: #fff;
+    border-radius: 0px 5px 5px 5px;
+    float: left;
+  }
+
+  #channel-messages .message.sent {
+    background: #e1ffc7;
+    border-radius: 5px 0px 5px 5px;
+    float: right;
+  }
+  
+  #channel-messages .message > img {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: 2px solid #333;
+    margin-right: 5px;
+  }

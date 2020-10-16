@@ -2,7 +2,17 @@ var $ = require("jquery");
 
 var { MD5 } = require("./md5.js");
 
-function createMessage(message, $el) {
+require("./message.css");
+
+function isSent(message, identity) {
+  return message.author == identity;
+}
+
+function createMessage(message, identity) {
+  var $el = $(
+    `<div class='message ${isSent(message, identity) ? "sent" : "received"}'/>`
+  ).attr("data-index", message.index);
+
   var $remove = $('<div class="remove-button glyphicon glyphicon-remove"/>')
     .on("click", function (e) {
       e.preventDefault();
@@ -94,6 +104,7 @@ function createMessage(message, $el) {
     .appendTo($el);
 
   var $membersRead = $('<p class="members-read"/>').appendTo($el);
+  return $el;
 }
 
 module.exports = {
