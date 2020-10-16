@@ -1,3 +1,4 @@
+import channelMessages from "./channel-messages.js";
 import "./index.css";
 
 var $ = require("jquery");
@@ -358,6 +359,6 @@ function removeTwilioChannelListeners(activeChannel) {
   });
   activeChannel.removeListener("memberUpdated", () => {
     console.log("memberUpdated event triggered");
-    Members.updateMember();
+    channelMessages.updateMemberMsgsTicks();
   });
 }

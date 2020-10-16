@@ -1,6 +1,8 @@
 var $ = require("jquery");
 var { MD5 } = require("./md5.js");
 
+var ChannelMessages = require("./channel-messages.js");
+
 function addMember(member, client) {
   member.getUser().then((user) => {
     var $el = $("<li/>").attr("data-identity", member.identity);
@@ -31,45 +33,13 @@ function addMember(member, client) {
       .on("click", member.remove.bind(member))
       .appendTo($el);
 
-    updateMember(member, user, client);
+    ChannelMessages.updateMemberMsgsTicks(member, user, client);
 
     $("#channel-members ul").append($el);
   });
 }
 
-function updateMember(member, user, client) {
-  if (user === undefined) {
-    return;
-  }
-  if (member.identity === decodeURIComponent(client.identity)) {
-    return;
-  }
-
-  var $lastRead = $(
-    '#channel-messages p.members-read img[data-identity="' +
-      member.identity +
-      '"]'
-  );
-
-  if (!$lastRead.length) {
-    $lastRead = $("<img/>")
-      .attr(
-        "src",
-        "http://gravatar.com/avatar/" + MD5(member.identity) + "?s=20&d=mm&r=g"
-      )
-      .attr("title", user.friendlyName || member.identity)
-      .attr("data-identity", member.identity);
-  }
-
-  var lastIndex = member.lastConsumedMessageIndex;
-  if (lastIndex) {
-    $(
-      "#channel-messages li[data-index=" + lastIndex + "] p.members-read"
-    ).append($lastRead);
-  }
-}
-
-function addMembersEventsHandlers(channel, activeChannel) {
+function addMembersEventsHandlers(channel, activeChannel, client) {
   console.log("adding addMember event handlers");
   channel.on("memberJoined", () => {
     updateMembers(activeChannel, client);
@@ -77,9 +47,9 @@ function addMembersEventsHandlers(channel, activeChannel) {
   channel.on("memberLeft", () => {
     updateMembers(activeChannel, client);
   });
-  channel.on("memberUpdated", () => {
+  channel.on("memberUpdated", (member, user) => {
     console.log("memberUpdated event triggered");
-    updateMember();
+    ChannelMessages.updateMemberMsgsTicks(member, user, client);
   });
 }
 
@@ -104,14 +74,14 @@ function updateMembers(activeChannel, client, channel, members) {
     members.forEach((member) => {
       member.getUser().then((user) => {
         user.on("updated", () => {
-          updateMember.bind(null, member, user, client);
+          ChannelMessages.updateMemberMsgTicks.bind(null, member, user, client);
           updateMembers(activeChannel, client);
         });
       });
     });
   });
 
-  addMembersEventsHandlers(channel, activeChannel);
+  addMembersEventsHandlers(channel, activeChannel, client);
 }
 
 function initialize(State) {
@@ -163,6 +133,5 @@ function emptyMembers() {
 module.exports = {
   emptyMembers,
   initialize,
-  updateMember,
   updateMembers,
 };

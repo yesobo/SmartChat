@@ -8,25 +8,7 @@
     position: relative;
     width: 100%;
   }
-  
-  #channel-messages p.members-read {
-    position: absolute;
-    bottom: 2px;
-    right: 10px;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
-  
-  #channel-messages p.members-read img {
-    height: 16px;
-    width: 16px;
-    border-radius: 8px;
-    border: solid 1px #333;
-    float: right;
-    margin-left: 4px;
-  }
-  
+    
   #channel-messages p.last-read {
     position: absolute;
     bottom: 2px;

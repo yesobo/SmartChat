@@ -11,16 +11,42 @@
     /* z-index: -1; */
   }
 
+  #channel-messages .message:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+
+  #channel-messages .message:first-child {
+    margin: 16px 0 8px;
+  }
+
   #channel-messages .message.received {
     background: #fff;
     border-radius: 0px 5px 5px 5px;
     float: left;
   }
 
+  .message.received:after {
+    border-width: 0px 10px 10px 0;
+    border-color: transparent #fff transparent transparent;
+    top: 0;
+    left: -10px;
+  }
+
   #channel-messages .message.sent {
     background: #e1ffc7;
     border-radius: 5px 0px 5px 5px;
     float: right;
+  }
+
+  .message.sent:after {
+    border-width: 0px 0 10px 10px;
+    border-color: transparent transparent transparent #e1ffc7;
+    top: 0;
+    right: -10px;
   }
   
   #channel-messages .message > img {
@@ -43,4 +69,42 @@
     color: rgba(0, 0, 0, .45);
     font-size: 11px;
     display: inline-block;
+  }
+
+   #channel-messages .message  .metadata .tick {
+    display: inline-block;
+    margin-left: 2px;
+    position: relative;
+    top: 4px;
+    height: 16px;
+    width: 16px;
+  }
+  
+   #channel-messages .message  .metadata .tick svg {
+    position: absolute;
+    transition: .5s ease-in-out;
+  }
+  
+   #channel-messages .message  .metadata .tick svg:first-child {
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform: perspective(800px) rotateY(180deg);
+            transform: perspective(800px) rotateY(180deg);
+  }
+  
+   #channel-messages .message  .metadata .tick svg:last-child {
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform: perspective(800px) rotateY(0deg);
+            transform: perspective(800px) rotateY(0deg);
+  }
+  
+   #channel-messages .message  .metadata .tick-animation svg:first-child {
+    -webkit-transform: perspective(800px) rotateY(0);
+            transform: perspective(800px) rotateY(0);
+  }
+  
+   #channel-messages .message  .metadata .tick-animation svg:last-child {
+    -webkit-transform: perspective(800px) rotateY(-179.9deg);
+            transform: perspective(800px) rotateY(-179.9deg);
   }

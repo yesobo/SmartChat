@@ -86,6 +86,12 @@ function renderConfirmEdit(message, $editBody, $el) {
     .appendTo($el);
 }
 
+function renderNewMessagesBoundary($el) {
+  var $lastRead = $('<p class="last-read"/>')
+    .text("New messages")
+    .appendTo($el);
+}
+
 function getMsgTimeStr(message) {
   if (message.lastUpdatedBy) {
     time = message.dateUpdated;
@@ -116,11 +122,7 @@ function createMessage(message, identity) {
 
   $el.append($metadata);
 
-  var $lastRead = $('<p class="last-read"/>')
-    .text("New messages")
-    .appendTo($el);
-
-  var $membersRead = $('<span class="tick"/>').appendTo($el);
+  var $membersRead = $('<span class="tick"/>').appendTo($metadata);
   return $el;
 }
 
