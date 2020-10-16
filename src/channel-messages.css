@@ -1,6 +1,5 @@
 #channel-messages {
-    display: flex;
-    flex-direction: column;
+    background: url("https://i.ibb.co/3s1f9Jq/default-wallpaper.png") repeat;
     height: calc(100% - 70px);
     margin-bottom: 70px;
     overflow-y: auto;
