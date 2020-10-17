@@ -243,7 +243,10 @@ function updateActiveChannel(channel, State, client) {
 function setActiveChannel(channel, State, client) {
   console.log(`setActiveChannel with ${channel}`);
   if (State.activeChannel) {
-    TwilioChannelUtils.removeTwilioChannelListeners(State.activeChannel);
+    TwilioChannelUtils.removeTwilioChannelListeners(
+      State.activeChannel,
+      client
+    );
   }
 
   State.activeChannel = channel;
@@ -350,15 +353,15 @@ function addChannelMessageEvents(channel) {
   channel.on("messageRemoved", ChannelMsgs.removeMessage);
 }
 
-function removeTwilioChannelListeners(activeChannel) {
+function removeTwilioChannelListeners(activeChannel, client) {
   activeChannel.removeListener("messageAdded", ChannelMsgs.addMessage);
   activeChannel.removeListener("messageRemoved", ChannelMsgs.removeMessage);
   activeChannel.removeListener("messageUpdated", updateMessage);
   activeChannel.removeListener("updated", () => {
     Channel.updateActiveChannel(activeChannel);
   });
-  activeChannel.removeListener("memberUpdated", () => {
+  activeChannel.removeListener("memberUpdated", (member, user) => {
     console.log("memberUpdated event triggered");
-    channelMessages.updateMemberMsgsTicks();
+    ChannelMsgs.updateMemberMsgsTicks(member, user, client);
   });
 }
