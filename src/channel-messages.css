@@ -1,13 +1,21 @@
 #channel-messages {
-    background: url("https://i.ibb.co/3s1f9Jq/default-wallpaper.png") repeat;
     font-family: "Roboto", sans-serif;
-    height: calc(100% - 70px);
-    margin-bottom: 70px;
-    overflow-y: auto;
-    padding: 0 16px 0px 16px;
-    position: relative;
-    width: 100%;
   }
+
+  .conversation .conversation-container {
+    height: calc(100% - 68px);
+    box-shadow: inset 0 10px 10px -10px #000000;
+    overflow-x: hidden;
+    padding: 0 16px;
+    margin-bottom: 19px;
+  }
+  
+  .conversation .conversation-container:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
     
   #channel-messages p.last-read {
     position: absolute;

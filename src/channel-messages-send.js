@@ -1,5 +1,7 @@
 var $ = require("jquery");
 
+require("./channel-messages-send.css");
+
 function getMessageBodyInput() {
   return $("#message-body-input");
 }

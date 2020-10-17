@@ -337,19 +337,6 @@ div.edit-button {
   display: inline-block;
 }
 
-.red-button {
-  border-radius: 5px;
-  border: 1px solid black;
-  color: white;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
-  background-color: #E30000;
-}
-
-.red-button:hover {
-  background-color: #B30000;
-}
-
 .white-button {
   border-radius: 5px;
   border: 1px solid black;
@@ -398,43 +385,26 @@ div.edit-button {
   overflow: hidden;
 }
 
-#channel-message-send {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding-bottom: 10px;
-  border-top: 1px solid #AAA;
-  background: #F5F5F8;
+
+.conversation {
+  position: relative;
+  background: url("https://i.ibb.co/3s1f9Jq/default-wallpaper.png") repeat;
+  z-index: 0;
 }
 
-#typing-indicator {
-  padding: 5px 15px;
-  font-style: italic;
-  color: #444;
+.conversation ::-webkit-scrollbar {
+  transition: all .5s;
+  width: 5px;
+  height: 1px;
+  z-index: 10;
 }
 
-#typing-indicator span {
-  display: block;
-  min-height: 18px;
+.conversation ::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-#channel-message-send input {
-  display: inline-block;
-  width: calc(100% - 90px);
-  margin-left: 10px;
-  height: 30px;
-  right: 60px;
-  padding: 0 10px;
-  border-radius: 5px;
-  border: 1px solid black;
-}
-
-#channel-message-send button {
-  margin: 0 10px;
-  height: 30px;
-  padding: 5px 10px;
-  display: inline-block;
+.conversation ::-webkit-scrollbar-thumb {
+  background: #b3ada7;
 }
 
 #channel-join-panel {
