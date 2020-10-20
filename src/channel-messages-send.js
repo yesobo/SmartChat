@@ -10,6 +10,10 @@ function getSendMessage() {
   return $("#send-message");
 }
 
+function getSendMessageIcon() {
+  return $("#send-message i");
+}
+
 function getTypingIndicator() {
   return $("#typing-indicator span");
 }
@@ -28,9 +32,20 @@ function initialize(State) {
     if (e.keyCode === 13) {
       getSendMessage().click();
     } else if (State.activeChannel) {
+      updateSendIcon(e);
       Events.onTyping ? Events.onTyping() : "";
     }
   });
+}
+
+function updateSendIcon(e) {
+  setTimeout(() => {
+    if (e.target.value.length) {
+      getSendMessageIcon().addClass("zmdi-mail-send").removeClass("zmdi-mic");
+    } else {
+      getSendMessageIcon().addClass("zmdi-mic").removeClass("zmdi-mail-send");
+    }
+  }, 250);
 }
 
 function onTyping(handler) {
