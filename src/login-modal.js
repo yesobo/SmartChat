@@ -1,3 +1,6 @@
+require("./login-modal.css");
+require("./login-modal-client.css");
+
 var $ = require("jquery");
 const { initChat } = require("./twilio-client.js");
 
@@ -7,6 +10,15 @@ let Events = {
 
 function getLoginName() {
   return $("#login-name");
+}
+
+function getLoginButton() {
+  return $("#login-button");
+}
+
+function getLoginClientPassword() {
+  // could be null
+  return $("#login.login-client #login-pass");
 }
 
 function googleLogIn(googleUser) {
@@ -42,6 +54,15 @@ function initialize(State) {
       $("#login-button").click();
     }
   });
+
+  if (getLoginClientPassword()) {
+    getLoginClientPassword().on("keydown", function (e) {
+      if (e.target.value.length === 5) {
+        // a trick to not repeat click if 6 (maxlength) is reached twice
+        getLoginButton().click();
+      }
+    });
+  }
 }
 
 function onLogin(cb) {

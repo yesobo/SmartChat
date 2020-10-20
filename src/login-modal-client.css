@@ -1,0 +1,69 @@
+#login.login-client {
+  background-color: #e64c08;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-align: center;
+}
+
+#login.login-client #logo-container {
+  width: 52%;
+  margin-top: 34%;
+}
+
+#login.login-client #logo-container img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block; /* remove extra space below image */
+}
+
+#login.login-client p {
+  margin: 10px auto;
+}
+
+#login.login-client div {
+  margin: 0 auto;
+}
+
+#login.login-client button {
+  float: right;
+  width: 130px;
+  margin-right: 14px;
+  display: none;
+}
+
+#login.login-client input#login-name {
+  width: calc(100% - 170px);
+  margin-left: 14px;
+  display: none;
+}
+
+#login.login-client input#login-pass {
+  font-size: 9rem;
+  text-align: center;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: #e64c08;
+  color: white;
+  letter-spacing: 6rem;
+}
+
+#login.login-client input#login-pass::placeholder {
+  color: white;
+}
+
+#login.login-client input#login-pass:focus {
+  font-size: 9rem;
+  text-align: center;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: #e64c08;
+  color: white;
+  letter-spacing: 6rem;
+}
