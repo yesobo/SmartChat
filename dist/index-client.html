@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Twilio Chat</title>
+  <meta name="google-signin-scope" content="profile">
+  <meta name="google-signin-client_id" content="1003561219122-8e45ibd1i42tu1gnqvs15e49f8g7fq0v.apps.googleusercontent.com">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+</head>
+<body>
+  <div id="login" class="popup login-client">
+    <div id="logo-container">
+      <img src="assets/ing-logo.jpg"></ing>
+    </div>
+    <input id="login-pass" type="password" maxlength="6" autofocus placeholder="------"></input>
+    <input id="login-name" placeholder="Identity" value="yesobo"></input>
+    <button id="login-button" class="red-button">Log In As Guest</button>
+    <!--
+      <p>-or-</p>
+      <div class="g-signin2" data-onsuccess="googleLogIn" data-theme="light"></div>
+    -->
+  </div>
+  <div id="add-member" class="popup">
+    <h3>Add User<div class="remove-button glyphicon glyphicon-remove"></div></h3>
+    <input id="add-identity" placeholder="Identity"></input>
+    <button id="add-button" class="red-button">Add</button>
+  </div>
+  <div id="invite-member" class="popup">
+    <h3>Invite User<div class="remove-button glyphicon glyphicon-remove"></div></h3>
+    <input id="invite-identity" placeholder="Identity"></input>
+    <button id="invite-button" class="red-button">Invite</button>
+  </div>
+  <div id="update-channel" class="popup">
+    <h3>Edit Channel<div class="remove-button glyphicon glyphicon-remove"></div></h3>
+    <input id="update-channel-display-name" placeholder="Display Name"/>
+    <input id="update-channel-unique-name" placeholder="Unique Name (Optional)"/>
+    <input id="update-channel-desc" placeholder="Description (Optional)"/>
+    <input disabled="true" type="checkbox" id="update-channel-private"/><label>Private Channel</label>
+    <button id="update-channel-submit" class="red-button">Update Channel</button>
+  </div>
+  <div id="create-channel" class="popup">
+    <h3>Create Channel<div class="remove-button glyphicon glyphicon-remove"></div></h3>
+    <input id="create-channel-display-name" placeholder="Display Name"/>
+    <input id="create-channel-unique-name" placeholder="Unique Name (Optional)"/>
+    <input id="create-channel-desc" placeholder="Description (Optional)"/>
+    <input type="checkbox" id="create-channel-private"/><label>Private Channel</label>
+    <button id="create-new-channel" class="red-button">Create Channel</button>
+  </div>
+  <div id="overlay"></div>
+  <div id="sidebar">
+    <div id="profile">
+      <img></img>
+      <label></label>
+      <div id="presence"></div>
+    </div>
+    <div id="channels">
+      <div id="invited-channels">
+        <ul></ul>
+      </div>
+      <div id="my-channels">
+        <ul></ul>
+      </div>
+      <div id="known-channels">
+        <ul></ul>
+      </div>
+      <div id="public-channels">
+        <ul></ul>
+      </div>
+      <div id="sidebar-footer">
+        <button id="create-channel-button" class="red-button">Create Channel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="no-channel">
+    <p>You are not currently viewing a Channel.</p>
+  </div>
+
+  <div id="channel">
+    <div id="channel-info">
+      <h1 id="channel-title"></h1>
+      <h2 id="channel-desc"></h2>
+      <button id="edit-channel" class="white-button">Edit Channel</button>
+      <button id="delete-channel" class="red-button">Delete Channel</button>
+    </div>
+    <div id="channel-body">
+      <div id="channel-chat" class="conversation">
+        <div id="channel-messages" class="conversation-container"></div>
+        <div id="channel-message-send" class="conversation-compose">
+          <div id="typing-indicator"><span></span></div>
+          <div class="emoji">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" id="smiley" x="3147" y="3209"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.153 11.603c.795 0 1.44-.88 1.44-1.962s-.645-1.96-1.44-1.96c-.795 0-1.44.88-1.44 1.96s.645 1.965 1.44 1.965zM5.95 12.965c-.027-.307-.132 5.218 6.062 5.55 6.066-.25 6.066-5.55 6.066-5.55-6.078 1.416-12.13 0-12.13 0zm11.362 1.108s-.67 1.96-5.05 1.96c-3.506 0-5.39-1.165-5.608-1.96 0 0 5.912 1.055 10.658 0zM11.804 1.01C5.61 1.01.978 6.034.978 12.23s4.826 10.76 11.02 10.76S23.02 18.424 23.02 12.23c0-6.197-5.02-11.22-11.216-11.22zM12 21.355c-5.273 0-9.38-3.886-9.38-9.16 0-5.272 3.94-9.547 9.214-9.547a9.548 9.548 0 0 1 9.548 9.548c0 5.272-4.11 9.16-9.382 9.16zm3.108-9.75c.795 0 1.44-.88 1.44-1.963s-.645-1.96-1.44-1.96c-.795 0-1.44.878-1.44 1.96s.645 1.963 1.44 1.963z" fill="#7d8489"/></svg>
+          </div>
+          <input type="textbox" id="message-body-input" class="input-msg"></input>
+          <div class="photo">
+            <img src="https://i.ibb.co/zNL2yg0/ib-attach.png" alt="" width="25" height="25">
+            <img src="https://i.ibb.co/vHXYtHF/ib-camera.png" alt="" width="25" height="25">
+          </div>
+          <button id="send-message" class="send">
+            <div class="circle">
+              <i class="zmdi zmdi-mic"></i>
+            </div>
+          </div>
+        </div>
+        <div id="channel-join-panel">
+          <button id="join-channel" class="red-button">Join this Channel</div>
+        </div>
+        <div id="channel-members">
+          <h3>Members</h3>
+          <button id="add-user" class="red-button">Add</button>
+          <button id="invite-user" class="red-button">Invite</button>
+          <ul></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://media.twiliocdn.com/sdk/js/chat/v3.3/twilio-chat.min.js"></script>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <script src="main.js"></script>
+</body>
+</html>
+
