@@ -47,8 +47,8 @@
   border-right-style: hidden;
   border-top-style: hidden;
   color: white;
-  font-size: 9rem;
-  letter-spacing: 6rem;
+  font-size: 14px;
+  letter-spacing: 14px;
   text-align: center;
 }
 
@@ -63,8 +63,8 @@
   border-right-style: hidden;
   border-top-style: hidden;
   color: white;
-  font-size: 9rem;
-  letter-spacing: 6rem;
+  font-size: 14px;
+  letter-spacing: 14px;
   outline: none;
   text-align: center;
 }

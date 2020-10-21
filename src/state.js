@@ -9,4 +9,5 @@ module.exports = {
   },
   identity: null,
   activeChannelPage: undefined,
+  isClient: false
 };

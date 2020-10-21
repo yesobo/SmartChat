@@ -50,6 +50,7 @@ $(document).ready(function () {
     }
   }
   showBody();
+  State.isClient = $("body").hasClass("is-client");
 });
 
 function showDeviceWarning() {

@@ -13,7 +13,9 @@ function getChannel() {
 
 function clearActiveChannel() {
   getChannel().hide();
-  $("#no-channel").show();
+  if (!State.isClient) {
+    $("#no-channel").show();
+  }
 }
 
 function setViewOnly(isViewOnly) {
