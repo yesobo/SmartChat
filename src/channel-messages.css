@@ -80,8 +80,11 @@
   }
   
   #channel-messages button {
-    display: none;
     margin: 0 5px;
+  }
+  
+  #channel-messages button.selected {
+    background-color: greenyellow;
   }
   
   #channel-messages span.edited {
