@@ -30,6 +30,10 @@
     float: left;
   }
 
+  #channel-messages .message.received button {
+    color: black;
+  }
+
   .message.received:after {
     border-width: 0px 10px 10px 0;
     border-color: transparent #FF6C02 transparent transparent;
