@@ -363,7 +363,7 @@ div.edit-button {
 
 .conversation {
   position: relative;
-  background: url("https://i.ibb.co/3s1f9Jq/default-wallpaper.png") repeat;
+  background: #EEE3DB;
   z-index: 0;
 }
 
