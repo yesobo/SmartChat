@@ -213,15 +213,6 @@ body {
   display: none;
 }
 
-#sidebar li:hover {
-  background: #E30000;
-  border-radius: 5px;
-}
-
-#sidebar li:hover div {
-  display: block;
-}
-
 #sidebar-footer {
   position: fixed;
   bottom: 0;
