@@ -13,7 +13,7 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 9000,
-    host: '0.0.0.0',
+    host: "0.0.0.0",
     disableHostCheck: true,
     proxy: {
       "/getToken": "http://localhost:8080", //"/getToken": "http://casa.sanguino.io:443",
