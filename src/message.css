@@ -24,27 +24,28 @@
   }
 
   #channel-messages .message.received {
-    background: #fff;
+    background: #FF6C02;
     border-radius: 0px 5px 5px 5px;
+    color: #FFF;
     float: left;
   }
 
   .message.received:after {
     border-width: 0px 10px 10px 0;
-    border-color: transparent #fff transparent transparent;
+    border-color: transparent #FF6C02 transparent transparent;
     top: 0;
     left: -10px;
   }
 
   #channel-messages .message.sent {
-    background: #e1ffc7;
+    background: #FFF;
     border-radius: 5px 0px 5px 5px;
     float: right;
   }
 
   .message.sent:after {
     border-width: 0px 0 10px 10px;
-    border-color: transparent transparent transparent #e1ffc7;
+    border-color: transparent transparent transparent #FFF;
     top: 0;
     right: -10px;
   }
