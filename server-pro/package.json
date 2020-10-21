@@ -4,8 +4,9 @@
   "description": "Twilio Chat JS SDK Demo",
   "private": "true",
   "scripts": {
-    "start": "webpack-dev-server --open & node server.js",
-    "build": "webpack --config webpack.config.prod.js"
+    "start": "node server.js",
+    "build": "docker build -t smartchatserver .",
+    "package": "docker save smartchatserver:latest | gzip > smartchatserver.tar.gz"
   },
   "repository": {
     "type": "git",
@@ -18,17 +19,7 @@
   },
   "homepage": "https://github.com/twilio/twilio-chat-demo-js",
   "dependencies": {
-    "copy-webpack-plugin": "^6.2.1",
     "express": "^4.14.0",
-    "jquery": "^3.5.1",
-    "path": "^0.12.7",
     "twilio": "^3.6.5"
-  },
-  "devDependencies": {
-    "css-loader": "^4.3.0",
-    "style-loader": "^1.2.1",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
   }
 }

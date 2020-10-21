@@ -17,6 +17,8 @@ if (credentials.instanceSid) {
   );
 }
 
+app.use('/', express.static('public'))
+
 app.get("/getToken", function (req, res) {
   var identity = req.query && req.query.identity;
   if (!identity) {

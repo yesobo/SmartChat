@@ -255,6 +255,7 @@ body {
 #channel.view-only div.remove-button,
 #channel.view-only #channel-info button,
 #channel.view-only #channel-members,
+#channel.view-only #agent-actions,
 #channel.view-only #channel-message-send,
 #channel.view-only #typing-indicator {
   display: none;
@@ -412,32 +413,45 @@ div.edit-button {
 #channel-members {
   position: absolute;
   right: 0;
-  top: 60px;
+  top: 56%;
   bottom: 0;
   width: 200px;
+  height: 50%;
   border-left: 2px solid #667;
   background-color: #333;
   color: white;
 }
 
-#channel-members h3 {
+#agent-actions {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  width: 200px;
+  height: 50%;
+  border-left: 2px solid #667;
+  background-color: #333;
+  color: white;
+}
+
+#channel-members h3, #agent-actions h3 {
   margin: 5px;
   padding: 10px;
 }
 
-#channel-members button {
+#channel-members button, #agent-actions button {
   width: 80px;
   margin-left: 10px;
   display: inline-block;
 }
 
-#channel-members ul {
+#channel-members ul, #agent-actions ul {
   list-style-type: none;
   margin: 20px 0 0 0;
   padding: 0 10px;
 }
 
-#channel-members li {
+#channel-members li, #agent-actions li {
   margin: 5px 0;
   cursor: pointer;
   padding: 5px 5px 5px 15px;
@@ -447,7 +461,7 @@ div.edit-button {
   text-overflow: ellipsis;
 }
 
-#channel-members li img {
+#channel-members li img, #agent-actions li img {
   width: 20px;
   height: 20px;
   border-radius: 10px;
@@ -455,20 +469,20 @@ div.edit-button {
   margin-right: 5px;
 }
 
-#channel-members li div {
+#channel-members li div, #agent-actions li div {
   display: none;
 }
 
-#channel-members li:hover {
+#channel-members li:hover, #agent-actions li:hover {
   background: #E30000;
   border-radius: 5px;
 }
 
-#channel-members li:hover div {
+#channel-members li:hover div, #agent-actions li:hover div {
   display: block;
 }
 
-#channel-members li span {
+#channel-members li span, #agent-actions li span {
   display: inline-block;
   width: 110px;
   vertical-align: top;
@@ -477,11 +491,11 @@ div.edit-button {
   text-overflow: ellipsis;
 }
 
-#channel-members .member-online {
+#channel-members .member-online, #agent-actions .member-online {
   font-weight: bold;
 }
 
-#channel-members .member-offline {
+#channel-members .member-offline, #agent-actions .member-offline {
   color: gray;
 }
 
