@@ -8,6 +8,7 @@ var ChannelMsgs = require("./channel-messages.js");
 var ChannelMsgsSend = require("./channel-messages-send.js");
 var Message = require("./message.js");
 var Members = require("./members.js");
+var AgentsActions = require("./agent-actions.js");
 var UpdateChannelModal = require("./update-channel-modal.js");
 var LoginModal = require("./login-modal.js");
 var ChannelMenu = require("./channel-menu.js");
@@ -43,6 +44,8 @@ $(document).ready(function () {
   ChannelMenu.initialize(State);
 
   Members.initialize(State);
+
+  AgentsActions.initialize(State, ChannelMsgs);
 
   if (getDeviceWarning()) {
     if (!DeviceDetector.isDeviceAllowed()) {

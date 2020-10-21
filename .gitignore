@@ -3,3 +3,6 @@ credentials.json
 *.swp
 node_modules
 package-lock.json
+.DS_Store
+*.tar.gz
+server-pro/public

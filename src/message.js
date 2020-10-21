@@ -118,7 +118,10 @@ function createMessage(message, identity) {
   var $el = $(
     `<div class='message ${isSent(message, identity) ? "sent" : "received"}'/>`
   ).attr("data-index", message.index);
-  $el.text(message.body);
+  if (message.body.indexOf("##html") === 0)
+    $el.html(message.body.slice( 6 ));
+  else
+    $el.text(message.body);
 
   var $metadata = $('<span class="metadata"/>');
 
