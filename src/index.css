@@ -99,15 +99,16 @@ body {
 }
 
 #sidebar {
+  background: #222;
+  bottom: 0;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  left: 0;
+  overflow-y: auto;
+  padding-bottom: 80px;
   position: absolute;
   top: 0;
-  left: 0;
-  bottom: 0;
   width: 250px;
-  background: #222;
-  color: white;
-  padding-bottom: 80px;
-  overflow-y: auto;
 }
 
 #profile {
@@ -161,6 +162,7 @@ body {
 #profile > #presence.denied { background: red; }
 
 #channels {
+  font-family: INGMeWeb-Regular, Arial, sans-serif;
   margin-top: 80px;
 }
 
@@ -214,19 +216,36 @@ body {
 }
 
 #sidebar-footer {
-  position: fixed;
+  background-color: white;
   bottom: 0;
-  width: 250px;
   height: 80px;
   padding: 20px 0;
-  text-align: center;
-  background-color: #222;
+  position: fixed;
+  text-align: right;
+  width: 100%;
 }
 
 #create-channel-button {
-  margin: 0 auto;
-  padding: 12px;
-  width: 90%;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+}
+
+#create-channel-button .circle {
+  background: #FF6C02;
+  border-radius: 50%;
+  color: #fff;
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#create-channel-button .circle i {
+  font-size: 24px;
+  margin-left: 1px;
 }
 
 #channel, #no-channel {
