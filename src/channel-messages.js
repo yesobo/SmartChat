@@ -62,7 +62,7 @@ function addMessage(message) {
   getChannelMessagesList().append($el);
 
   if (initHeight - 50 < $messages.scrollTop() + $messages.height()) {
-    $messages.scrollTop(getChannelMessagesList().height());
+    $messages.scrollTop(getChannelMessagesList().height() + 200);
   }
 
   if (
