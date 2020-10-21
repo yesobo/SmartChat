@@ -15,6 +15,7 @@ var Channels = require("./channels");
 var State = require("./state.js");
 var Profile = require("./profile.js");
 var TwilioClient = require("./twilio-client.js");
+var DeviceDetector = require("./device-detector.js");
 
 var client;
 
@@ -42,10 +43,24 @@ $(document).ready(function () {
   ChannelMenu.initialize(State);
 
   Members.initialize(State);
-  showLogin();
+
+  if (getDeviceWarning()) {
+    if (!DeviceDetector.isDeviceAllowed()) {
+      showDeviceWarning();
+    }
+  }
+  showBody();
 });
 
-function showLogin() {
+function showDeviceWarning() {
+  getDeviceWarning().css("display", "block");
+}
+
+function getDeviceWarning() {
+  return $("#warn-device");
+}
+
+function showBody() {
   $("body").css("display", "block");
   if (LoginModal.getLoginClientPassword()) {
     LoginModal.getLoginClientPassword().focus();

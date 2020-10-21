@@ -8,11 +8,25 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+  <style>
+    @font-face {
+      font-family: "INGMeWeb-Regular";
+      src: url('./assets/fonts/INGMeWeb-Regular.woff2')
+    }
+
+    @font-face {
+      font-family: "INGMeWeb-Bold";
+      src: url('./assets/fonts/INGMeWeb-Bold.woff2')
+    }
+  </style>
 </head>
-<body>
+<body style="display: none">
+  <div id="warn-device" style="display:none">
+    <h1>Please reload this Demo on an iphone or use Chrome Device Mode</h1>
+  </div>
   <div id="login" class="popup login-client">
     <div id="logo-container">
-      <img src="assets/ing-logo.jpg"></ing>
+      <img src="/assets/ing-logo.jpg"></ing>
     </div>
     <input id="login-pass" type="password" maxlength="6" autofocus placeholder="------"></input>
     <input id="login-name" placeholder="Identity" value="yesobo"></input>
