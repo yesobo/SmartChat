@@ -12,6 +12,10 @@ function initialize(State) {
   $("#delete-channel").on("click", function () {
     State.activeChannel && State.activeChannel.delete();
   });
+
+  $("#back-channel").on("click", function () {
+    $("#channel").hide();
+  });
 }
 
 module.exports = {

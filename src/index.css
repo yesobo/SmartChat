@@ -493,3 +493,30 @@ div.edit-button {
         filter: grayscale(100%) blur(2px);
 }
 
+.is-client #no-channel,
+.is-client #channel-members,
+.is-client #edit-channel,
+.is-client #delete-channel {
+  display: none;
+}
+
+.is-client #sidebar,
+.is-client #sidebar #profile,
+.is-client #channel-chat {
+  width: 100%;
+}
+
+.is-client #channel {
+  left: 0;
+}
+
+#back-channel {
+  display: none;
+  margin-right: 20px;
+}
+
+.is-client #back-channel,
+.is-client #channel-title {
+  display: inline-block;
+}
+
