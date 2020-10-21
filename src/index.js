@@ -42,7 +42,15 @@ $(document).ready(function () {
   ChannelMenu.initialize(State);
 
   Members.initialize(State);
+  showLogin();
 });
+
+function showLogin() {
+  $("body").css("display", "block");
+  if (LoginModal.getLoginClientPassword()) {
+    LoginModal.getLoginClientPassword().focus();
+  }
+}
 
 function initializeJoinChannelBtn() {
   $("#join-channel").on("click", function () {

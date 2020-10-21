@@ -75,6 +75,7 @@ function hideLoginModal() {
 }
 
 module.exports = {
+  getLoginClientPassword,
   hideLoginModal,
   initialize,
   onLogin,
