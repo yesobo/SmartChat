@@ -16,18 +16,10 @@ function sendImage(img, State, ChannelMsgs) {
 
 function sendButtonOptions(options, State, ChannelMsgs) {
   if (options.length > 0) {
-    window.sendReplaceMessage = window.sendReplaceMessage || function(body) {
-      State.activeChannel.sendMessage(body).then(function () {
-        ChannelMsgs.getChannelMessages().scrollTop(
-          ChannelMsgs.getChannelMessagesList().height()
-        );
-        ChannelMsgs.updateLastRead();
-      });
-    }
-
     let body = options.map(option => option ? '<button class="button-option">'+option+'</button>' : '');
     body = body.filter(value => value !== '').join('');
     body += '<script>';
+    body += '$(".button-option").off();'
     body += '$(".button-option").on("click", function (e) {';
     body += 'var selected = e.target.innerHTML;';
     body += 'e.target.parentNode.remove();';
@@ -50,6 +42,14 @@ function initialize(State, ChannelMsgs) {
     sendButtonOptions([option1, option2, option3], State, ChannelMsgs);
   });
   
+  window.sendReplaceMessage = window.sendReplaceMessage || function(body) {
+    State.activeChannel.sendMessage("Seleccionado: " + body).then(function () {
+      ChannelMsgs.getChannelMessages().scrollTop(
+        ChannelMsgs.getChannelMessagesList().height()
+      );
+      ChannelMsgs.updateLastRead();
+    });
+  }
 }
 
 module.exports = {
