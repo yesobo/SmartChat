@@ -61,9 +61,11 @@ function addMessage(message) {
 
   getChannelMessagesList().append($el);
 
+  /*
   if (initHeight - 50 < $messages.scrollTop() + $messages.height()) {
     $messages.scrollTop(getChannelMessagesList().height() + 200);
   }
+  */
 
   if (
     getChannelMessagesList().height() <= $messages.height() &&
@@ -71,6 +73,10 @@ function addMessage(message) {
   ) {
     message.channel.updateLastConsumedMessageIndex(message.index);
   }
+
+  setTimeout(() => {
+    $messages.scrollTop(10000);
+  }, 150);
 }
 
 function scrollToLastRead(page, channel) {
@@ -82,7 +88,7 @@ function scrollToLastRead(page, channel) {
     var $li = $(".message[data-index=" + lastIndex + "]");
     var top = $li.position() && $li.position().top;
     $li.addClass("last-read");
-    getChannelMessages().scrollTop(top + getChannelMessages().scrollTop());
+    // getChannelMessages().scrollTop(top + getChannelMessages().scrollTop());
   }
   return newestMessageIndex;
 }
@@ -94,7 +100,7 @@ function loadPreviousMessages(channelMsgsObject) {
     page.items.reverse().forEach(prependMessage);
     State.activeChannelPage = page;
     var difference = $(channelMsgsObject).height() - initialHeight;
-    channelMsgsObject.scrollTop(difference);
+    // channelMsgsObject.scrollTop(difference);
     channelMsgsObject.removeClass("loader");
   });
 }

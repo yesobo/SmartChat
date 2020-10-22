@@ -453,6 +453,10 @@ div.edit-button {
   color: white;
 }
 
+#agent-actions input {
+  color: black;
+}
+
 #channel-members h3, #agent-actions h3 {
   margin: 5px;
   padding: 10px;
