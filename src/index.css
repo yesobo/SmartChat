@@ -99,9 +99,9 @@ body {
 }
 
 #sidebar {
-  background: #222;
+  background: white;
   bottom: 0;
-  color: white;
+  color: #222;
   font-family: "Roboto", sans-serif;
   left: 0;
   overflow-y: auto;
@@ -116,9 +116,8 @@ body {
   padding: 10px;
   height: 60px;
   line-height: 40px;
-  background-color: #333;
   position: fixed;
-  border-bottom: 2px solid #666;
+  background: #FFF;
 }
 
 .avatar {
@@ -162,8 +161,9 @@ body {
 #profile > #presence.denied { background: red; }
 
 #channels {
+  box-shadow: inset 0 10px 10px -10px #000000;
   font-family: INGMeWeb-Regular, Arial, sans-serif;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 #sidebar h3 {
@@ -172,17 +172,19 @@ body {
 
 #sidebar ul {
   list-style-type: none;
-  padding: 0 10px;
+  padding: 0;
+  margin: 0;
 }
 
 #sidebar li {
-  margin: 5px 0;
+  margin: 0;
   cursor: pointer;
-  padding: 5px 5px 5px 15px;
+  padding: 15px;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-bottom: #DDD solid 1px;
 }
 
 #sidebar li span {
@@ -190,7 +192,7 @@ body {
 }
 
 #sidebar li span.joined {
-  color: white;
+  color: #222;
 }
 
 #sidebar li.new-messages span {
@@ -228,7 +230,7 @@ body {
 #create-channel-button {
   background-color: transparent;
   border: none;
-  margin: 0;
+  margin: 0 10px;
 }
 
 #create-channel-button .circle {
@@ -259,6 +261,7 @@ body {
 
 #channel {
   display: none;
+  font-family: INGMeWeb-Regular,Arial,sans-serif;
 }
 
 #channel.view-only div.edit-button,
@@ -293,7 +296,6 @@ body {
   height: 60px;
   padding: 5px 10px;
   background: #FFF;
-  border-bottom: 2px solid #666;
 }
 
 #channel-info h1 {
@@ -536,7 +538,7 @@ div.edit-button {
 
 #back-channel {
   display: none;
-  margin-right: 20px;
+  margin: 10px 15px 10px 5px;
 }
 
 .is-client #back-channel,
@@ -544,3 +546,6 @@ div.edit-button {
   display: inline-block;
 }
 
+.is-client #channel-title {
+  font-size: 24px; 
+}
