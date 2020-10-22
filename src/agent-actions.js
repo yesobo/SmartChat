@@ -1,4 +1,5 @@
 var $ = require("jquery");
+window.$ = $;
 
 function sendCustomMessage(body, State, ChannelMsgs) {
   State.activeChannel.sendMessage('##html' + body).then(function () {
@@ -15,18 +16,31 @@ function sendImage(img, State, ChannelMsgs) {
 
 function sendButtonOptions(options, State, ChannelMsgs) {
   if (options.length > 0) {
-    const body = options.map(option => option ? '<button class="button-option">'+option+'</button>' : '');
-    sendCustomMessage(body.filter(value => value !== '').join(''), State, ChannelMsgs);
+    window.sendReplaceMessage = window.sendReplaceMessage || function(body) {
+      State.activeChannel.sendMessage(body).then(function () {
+        ChannelMsgs.getChannelMessages().scrollTop(
+          ChannelMsgs.getChannelMessagesList().height()
+        );
+        ChannelMsgs.updateLastRead();
+      });
+    }
+
+    let body = options.map(option => option ? '<button class="button-option">'+option+'</button>' : '');
+    body = body.filter(value => value !== '').join('');
+    body += '<script>';
+    body += '$(".button-option").on("click", function (e) {';
+    body += 'var selected = e.target.innerHTML;';
+    body += 'e.target.parentNode.remove();';
+    body += 'window.sendReplaceMessage(selected);';
+    body += '});';
+    body += '</script>';
+    sendCustomMessage(body, State, ChannelMsgs);
   }
 }
 
 function initialize(State, ChannelMsgs) {
   $("#send-image").on("click", function () {
     sendImage('ing-logo.jpg', State, ChannelMsgs);
-  });
-
-  $("#show-pinpad").on("click", function () {
-
   });
   
   $("#custom-options").on("click", function () {
