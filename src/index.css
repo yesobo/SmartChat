@@ -117,7 +117,14 @@ body {
   height: 60px;
   line-height: 40px;
   position: fixed;
-  background: #FFF;
+  background-color: #FFF;
+  display: none;
+}
+
+#sidebar-header {
+  position: absolute;
+  text-align: center;
+  width: 100%;
 }
 
 .avatar {
